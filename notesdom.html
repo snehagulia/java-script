@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Day 1 - Selectors & Basics</title>
+</head>
+<body>
+  <h1 id="title">Welcome to DOM Class!</h1>
+  <p class="para">DOM means Document Object Model.</p>
+  <p class="para">It represents the structure of your HTML page in tree form.</p>
+  <button id="changeText">Change Text</button>
+  <button id="changeColor">Change Color</button>
+  <div class="box">This is a box</div>
+
+  <script>
+    /*
+       What is the DOM?
+      DOM (Document Object Model) — JS ke through HTML page ko access aur modify karne ka tareeka.
+      Browser HTML ko ek "tree" me convert karta hai — jisme har tag ek node hota hai.
+    */
+   //DOM se hum kya kya kr skte hai
+  //  textchange  , colour change , buttonclick pr kaam karvana , new element add/remove , form validation.
+
+    console.log(document); // HTML structure as JS object
+
+    /*
+       SELECTING ELEMENTS
+      1 getElementById()
+      2 getElementsByClassName()
+      3 getElementsByTagName()
+      4 querySelector()
+      5 querySelectorAll()
+    */
+
+    // 1 getElementById() → single element
+    const heading = document.getElementById("title");
+    heading.style.backgroundColor = "lightyellow";
+
+    // 2 getElementsByClassName() → multiple elements (HTMLCollection)
+    const paras = document.getElementsByClassName("para");
+    console.log("By Class (HTMLCollection):", paras);
+    paras[0].style.color = "green";
+
+    /*
+       HTMLCollection is not a real array
+         - It looks like array but doesn’t support forEach(), map(), etc.
+         - To use array methods, we must convert it.
+    */
+
+    //  Convert HTMLCollection to real array using Array.from()
+    const paraArray = Array.from(paras);
+
+    // ab hum forEach use kar sakte hain
+    paraArray.forEach((p) => {
+      p.style.fontSize = "18px";
+      p.style.backgroundColor = "lightcyan";
+    });
+
+
+    // 3 getElementsByTagName()
+    const allButtons = document.getElementsByTagName("button");
+    console.log("By Tag:", allButtons);
+    allButtons[1].style.backgroundColor = "lightblue";
+
+    // 4 querySelector() → returns first matching element
+    const firstPara = document.querySelector(".para");
+    firstPara.innerText = "This is changed using querySelector()";
+
+    // 5 querySelectorAll() → returns NodeList (can use forEach directly)
+    const allPara = document.querySelectorAll(".para");
+    allPara.forEach((p) => (p.style.fontWeight = "bold"));
+
+    /*
+      
+        innerText vs innerHTML vs textContent
+       
+      innerText  → sirf visible text
+      innerHTML  → text + HTML tags
+      textContent → pure text (even hidden ones)
+    */
+    const box = document.querySelector(".box");
+    console.log("innerText:", box.innerText);
+    console.log("innerHTML:", box.innerHTML);
+    console.log("textContent:", box.textContent);
+
+    /*
+      EVENTS & INTERACTIONS
+      addEventListener() se hum kisi element par event (click, etc.) laga sakte hain
+    */
+    const changeTextBtn = document.getElementById("changeText");
+    const changeColorBtn = document.getElementById("changeColor");
+
+   // changeTextBtn.addEventListener("click", () => {
+     // heading.innerText = "Text Changed using addEventListener()!";
+   // });
+
+    changeColorBtn.addEventListener("click", () => {
+      heading.style.color = "purple";
+    });
+   
+
+    //  assignment
+    // read about window object
+    // events 
+  </script>
+</body>
+</html>

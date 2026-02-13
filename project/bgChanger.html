@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bg Changer</title>
+</head>
+<body id="body">
+     <button id="start">start</button>
+     <button id="stop">stop</button>
+</body>
+
+  <script>
+         function generateRandomColor(){
+            let red = Math.floor(Math.random()*256);
+            let green = Math.floor(Math.random()*256);
+            let blue = Math.floor(Math.random()*256);
+
+             return `rgb(${red}, ${green}, ${blue})`;
+        }
+
+      let taskId;
+      const startButton = document.getElementById("start")
+        startButton.addEventListener("click",function(){
+            setInterval(() => {
+            if(taskId) return;    
+            document.body.style.backgroundColor=generateRandomColor()
+            },1000);
+        })
+        const clearButton = document.getElementById("stop")
+        clearButton.addEventListener("click",function(){
+            clearInterval(taskId);
+            taskId=null;
+        })
+  </script>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js events</title>
+    <style>
+        img {
+            height: 200px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #212121; color: aliceblue;">
+    <ul id="images">
+        <li> <img
+                src="https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE="
+                alt="img1"> </li>
+
+        <li id="elephant"> <img
+                src="https://images.pexels.com/photos/1054655/pexels-photo-1054655.jpeg?cs=srgb&dl=pexels-hsapir-1054655.jpg&fm=jpg"
+                alt="img2"> </li>
+
+
+        <li> <img
+                src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQIy4d7P3mJN5n44jxkUjp24w5W1FF2ro43MBxyZqTV2EOB9hVgw1ZW3m9kFoxqA6TD2AqigsYj"
+                alt="img3"> </li>
+
+        <li> <img id="camera"
+                src="https://thumbs.dreamstime.com/b/wildflowers-blooming-sunset-nature-scenery-wildflowers-blooming-sunset-nature-scenery-388164189.jpg"
+                alt="img4"> </li>
+
+                <li> <a id="a" href="https://google.com">click me</a>  </li>
+        
+            </ul>
+</body>
+<script>
+
+    // type,timestamp,defaultprevented
+    // target , scrElement , currentTarget
+    // clientX ,clientY, screenX,screenY
+    // altKey ctrlKey shiftKey 
+
+     const btn = document.getElementById("btn")
+    btn.addEventListener("click",function(e){
+         alert("button clicked");
+        console.log(e);
+     })
+
+
+     
+     const img = document.getElementById("elephant")
+     img.addEventListener("click", function (e) {
+        console.log(e.timeStamp);
+    //     console.log(e.type);
+    //     console.log(e.clientX, e.clientY);
+    //     console.log(e.screenX, e.screenY);
+    //     console.log(e.currentTarget);
+    //     console.log(e.altKey);
+    //     console.log(e.ctrlKey);
+    //     console.log(e.shiftKey);
+     })
+
+
+    // event propagation (bubbling) vs event capturing
+    const images = document.getElementById("images")
+    images.addEventListener("click", function (e) {
+        console.log("all images clicked")
+        //  alert("all images clicked")
+    }, false);
+
+    const elephant = document.getElementById("elephant")
+    elephant.addEventListener("click", function (e) {
+        console.log("elephant clicked")
+        e.stopPropagation();
+    }, false);
+    
+    const link = document.querySelector("a")
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+    })
+
+
+    //   example
+    // approach is wrong if we click on li all images will be deleted
+    // const images1 = document.querySelector("#images")
+    // images1.addEventListener("click",function(e){
+    //     console.log(e.target.parentNode);
+    //     const del = e.target.parentNode;
+    //     del.remove();
+    // })
+
+    // better approach
+    // const images2 = document.querySelector("#images")
+    // images2.addEventListener("click",function(e){
+    //     console.log(e.target.parentNode);
+    //     if (e.target.tagName === "IMG") {
+    //         const del = e.target.parentNode;
+    //         del.remove();
+    //     }
+    // })
+
+    // ANOTHER BETTER APPROACH
+    // DELETE BY ID
+
+</script>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation-Day 2</title>
+</head>
+
+<body>
+    <h1 id="main-heading">My Todo List</h1>
+
+    <ul id="todo-list">
+        <li>Learn HTML</li>
+        <li>Learn CSS</li>
+    </ul>
+
+    <button id="add-btn">Add Todo</button>
+    <button id="remove-btn">Remove Last Todo</button>
+    <button id="change-btn">Change First Todo</button>
+    
+    <br>
+    <br>
+    <br>
+    
+    <input type="text" placeholder="enter the todo" id="input">
+      <button id="add-with-inp">add todo with input</button>
+
+
+    <script>
+        // Day 2 - DOM Manipulation
+        //  kaise elements ko create, append, update aur delete karte hain.
+
+        // 1️ CREATE ELEMENT
+        // document.createElement('tagName') -> naya element banata hai
+        const newTodo = document.createElement("li"); // <li></li> bana
+        newTodo.innerText = "Learn JavaScript"; // andar content add kiya
+        console.log(newTodo); // abhi page par nahi gaya
+
+        // 2️ APPEND ELEMENT (Add to DOM)
+        // appendChild() -> existing element ke andar child add karta hai
+        const todoList = document.getElementById("todo-list");
+        todoList.appendChild(newTodo); // <ul> ke andar <li> add hua
+
+        // 3️ PREPEND ELEMENT (Add to Start)
+        // prepend() -> element ke starting me add karta hai
+        const firstTodo = document.createElement("li");
+        firstTodo.innerText = "Start with Basics";
+        todoList.prepend(firstTodo);
+
+        // 4️ INSERT ELEMENT BEFORE SOME OTHER ELEMENT
+        const anotherTodo = document.createElement("li");
+        anotherTodo.innerText = "Learn Flexbox";
+        const secondItem = todoList.children[1];
+        todoList.insertBefore(anotherTodo, secondItem);
+
+        // 5️ REMOVE ELEMENT
+        // removeChild() -> kisi specific element ko hata sakte hain
+        const removeBtn = document.getElementById("remove-btn");
+        removeBtn.addEventListener("click", function () {
+            if (todoList.lastElementChild) {
+                todoList.removeChild(todoList.lastElementChild);
+            } else {
+                alert("No more todos to remove!");
+            }
+        });
+
+        // 6️ CHANGE OR UPDATE ELEMENT
+        // innerText, innerHTML, textContent se change kar sakte hain
+        const changeBtn = document.getElementById("change-btn");
+        changeBtn.addEventListener("click", function () {
+            const firstItem = todoList.firstElementChild;
+            if (firstItem) {
+                firstItem.innerText = "Basics Completed!";
+                firstItem.style.color = "green";
+            }
+        });
+
+        // 7️ SET / GET ATTRIBUTES
+        // setAttribute(name, value) -> element me attribute lagata hai
+        const heading = document.getElementById("main-heading");
+        heading.setAttribute("class", "title");
+        console.log(heading.getAttribute("class")); // output: title
+
+        // 8️ CLASSLIST - add(), remove(), toggle()
+        heading.classList.add("highlight"); // class add karo
+        heading.classList.toggle("active"); // toggle means ON/OFF
+        heading.classList.remove("highlight"); // class remove karo
+
+        // 9️ EVENT DRIVEN ELEMENT CREATION
+        // Button click par new todo add karo
+        const addBtn = document.getElementById("add-btn");
+        addBtn.addEventListener("click", function () {
+            const newItem = document.createElement("li");
+            newItem.innerText = "New Todo Added!";
+            newItem.style.color = "blue";
+            todoList.appendChild(newItem);
+        });
+
+        //  10 create element using inputs 
+        const addTodoWithInput = document.getElementById("add-with-inp");
+        addTodoWithInput.addEventListener("click",()=> {
+            const  input = document.getElementById("input");
+            const todoWithInput = document.createElement("li");
+            todoWithInput.innerText=input.value;
+            todoList.appendChild(todoWithInput);
+            input.value=""     
+        })
+    </script>
+</body>
+
+</html>

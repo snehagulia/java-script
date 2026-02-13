@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript DOM</title>
+</head>
+<body>
+<h1 id="msg">HELLO! I AM SNEHA.</h1>
+<P class="para"> This is my DOM</P>
+<p class="para">DOM represent HTML page in tree form. </p>
+   <button id="changetext">clickme</button>  
+       <button id="changeColor">clickon</button>
+<div class="box">This is a box.</div>
+
+<script>
+    console.log(document);
+    
+    const btn = document.getElementById("changetext");    //getelementbyid
+    const heading =document.getElementById("msg");
+    btn.addEventListener("click" , function (){
+     heading.innerText = "Hii";
+     heading.style.backgroundColor = "pink";
+     const paras = document.getElementsByClassName("para");       //getelementbyclassname
+    console.log("By Class (HTMLCollection):", paras);
+    paras[0].style.color = "blue";
+ const allButtons = document.getElementsByTagName("button");    //color change in clickon button
+    console.log("By Tag:", allButtons);
+    allButtons[1].style.backgroundColor = "lightblue";
+ const firstPara = document.querySelector(".para");
+    firstPara.innerText = "This is changed using querySelector()";
+    const allPara = document.querySelectorAll(".para");
+    allPara.forEach((p) => (p.style.fontWeight = "bold"));
+ const box = document.querySelector(".box");
+    console.log("innerText:", box.innerText);
+    console.log("innerHTML:", box.innerHTML);
+    console.log("textContent:", box.textContent);
+
+    });
+    
+</script>
+
+   
+</body>
+</html>

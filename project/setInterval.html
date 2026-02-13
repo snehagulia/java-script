@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+</body>
+<script>
+    const start_btn = document.getElementById("start");
+    const stop_btn = document.getElementById("stop");
+    let task;
+      
+    function sayMyName() {
+        console.log("i am batman");   
+    }
+    
+    start_btn.addEventListener("click",function(){
+        task  = setInterval(sayMyName,1000);
+    })
+    stop_btn.addEventListener("click",function(){
+        clearInterval(task);
+    })
+</script>
+</html>
