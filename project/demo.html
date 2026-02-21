@@ -6,56 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-         body{
+        body {
             background: url("https://img.freepik.com/free-photo/courage-man-jump-through-gap-hill-business-concept-idea_1323-262.jpg?semt=ais_hybrid&w=740&q=80");
-         }
+        }
     </style>
 </head>
 
 <body id="body">
 
-    <button id="btn">
-        start
-    </button>
+    <button id="btn">start</button>
 
-    <button id="stop">
-        stop
-    </button>
+    <button id="stop">stop</button>
 
-   
+
 
     <script>
 
         const btn = document.getElementById("btn")
-        const stopBtn  = document.getElementById("stop")
-     
-          let task;
+        const stopBtn = document.getElementById("stop")
+
+        let task;
 
         btn.addEventListener("click", () => {
-           task =  setInterval(function () {
-               console.log("hello");
+            task = setInterval(function () {
+                console.log("hello");
             }, 2000)
         })
 
 
-      stopBtn.addEventListener("click",()=> {
-          console.log("stopped");
-          clearInterval(task);
-      })
+        stopBtn.addEventListener("click", () => {
+            console.log("stopped");
+            clearInterval(task);
+        })
 
 
-    //   function one() {
-    //       document.getElementById("body").style.background  = "url()"
+        //   function one() {
+        //       document.getElementById("body").style.background  = "url()"
 
-    //   }
+        //   }
 
-    //   function two() {
-    //               document.getElementById("body").style.background  = "url()"
+        //   function two() {
+        //               document.getElementById("body").style.background  = "url()"
 
-    //   }
+        //   }
 
 
-      
+
 
 
     </script>
